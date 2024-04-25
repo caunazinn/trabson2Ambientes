@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programas JavaScript</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+
+<button id="fibonacciBotao">Fibonacci</button>
+<button id="mdcBotao">Máximo Divisor Comum</button>
+<button id="primosBotao">Números Primos</button>
+<button id="ordenacaoBotao">Ordenação</button>
+<button id="somatoriosBotao">Somatórios</button>
+
+<script>
+    document.getElementById("fibonacciBotao").addEventListener("click", function() {
+        let n = parseInt(prompt("Digite um número para gerar a sequência de Fibonacci:"));
+
+let n1 = 0;
+let n2 = 1;
+let n3 = n1 + ", " + n2;
+
+for (let i = 3; i <= n; i++) {
+    n3 += ", " + (n1 + n2);
+    let temp = n2;
+    n2 = n1 + n2;
+    n1 = temp;
+}
+
+document.write('Sequência de Fibonacci até ' + n + ' é: '+ n3);
+
+    });
+
+    document.getElementById("mdcBotao").addEventListener("click", function() {
+        let num1 = parseInt(prompt("Digite o primeiro número: "));
+let num2 = parseInt(prompt("Digite o segundo número: "));
+let a = num1;
+let b = num2;
+let resto;
+
+while (b !== 0) {
+    resto = a % b;
+    a = b;
+    b = resto;
+}
+
+document.write("O MDC é: " + a);
+    });
+
+    document.getElementById("primosBotao").addEventListener("click", function() {
+        let num = parseInt(prompt("Digite um número para ver se é primo:"));
+if (num < 2) {
+    document.write("O número não é primo.");
+} else {
+    let primo = true;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            primo = false;
+            break;
+        }
+    }
+    if (primo) {
+        document.write("O número é primo.");
+    } else {
+        document.write("O número não é primo.");
+    }
+}
+    });
+
+    document.getElementById("ordenacaoBotao").addEventListener("click", function() {
+        const input = prompt("Digite os números: ");
+const array = input.split(' ').map(Number);
+
+const quickSort = (array) => {
+  if (array.length <= 1) {
+    return array;
+  }
+
+  const pivot = array[Math.floor(array.length / 2)];
+  const left = [];
+  const right = [];
+
+  for (let i = 0; i < array.length; i++) {
+    if (i !== Math.floor(array.length / 2)) {
+      if (array[i] < pivot) {
+        left.push(array[i]);
+      } else {
+        right.push(array[i]);
+      }
+    }
+  }
+
+  return [...quickSort(left), pivot, ...quickSort(right)];
+};
+
+const ordem = quickSort(array);
+document.write("Numeros em ordem: " + ordem);
+    });
+
+    document.getElementById("somatoriosBotao").addEventListener("click", function() {
+        let n = parseInt(prompt("Informe a quantidade de números:"));
+let soma = 0;
+
+for (let i = 0; i < n; i++) {
+    let numero = parseInt(prompt("Informe um número:"));
+    soma += numero;
+}
+
+document.write("O somatório dos números é: " + soma);
+
+    });
+</script>
+
+</body>
+</html>
